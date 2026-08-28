@@ -9,13 +9,11 @@ int exec_simple(t_shell *sh, char **argv)
     int     status;
 
     pid = fork();
-    if (pid < 0)
-    {
+    if (pid < 0) {
         tci_printf("fork: failed\n");
         return (1);
     }
-    if (pid == 0)
-    {
+    if (pid == 0) {
         execvp(argv[0], argv);
         fprintf(stderr, "%s: command not found\n", argv[0]);
         _exit(127);

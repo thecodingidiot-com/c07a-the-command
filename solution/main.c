@@ -24,8 +24,7 @@ static void free_argv(char **argv)
     int i;
 
     i = 0;
-    while (argv[i])
-    {
+    while (argv[i]) {
         free(argv[i]);
         i++;
     }
@@ -49,8 +48,7 @@ static void run_line(t_shell *sh, char const *line)
     argv = naive_split(line);
     if (!argv)
         return;
-    if (count_words(argv) == 0)
-    {
+    if (count_words(argv) == 0) {
         free_argv(argv);
         return;
     }
@@ -71,13 +69,11 @@ int main(void)
     sh.last_status = 0;
     sh.running = 1;
     interactive = isatty(STDIN_FILENO);
-    while (sh.running)
-    {
+    while (sh.running) {
         if (interactive)
             tci_printf("$ ");
         line = tci_getline(STDIN_FILENO);
-        if (!line)
-        {
+        if (!line) {
             if (interactive)
                 tci_printf("exit\n");
             break;
